@@ -1,0 +1,3 @@
+[submodule "include/nginx"]
+	path = include/nginx
+	url = https://github.com/saltstack-formulas/nginx-formula.git
