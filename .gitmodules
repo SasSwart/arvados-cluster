@@ -1,0 +1,9 @@
+[submodule "include/nginx"]
+	path = include/nginx
+	url = https://github.com/saltstack-formulas/nginx-formula.git
+[submodule "include/arvados"]
+	path = include/arvados
+	url = https://github.com/saltstack-formulas/arvados-formula.git
+[submodule "include/postgres"]
+	path = include/postgres
+	url = https://github.com/saltstack-formulas/postgres-formula.git
