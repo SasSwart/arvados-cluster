@@ -2,5 +2,7 @@ include:
   - base
   - postgres
   - nginx
-  - arvados
+  - arvados.api
+  - arvados.controller
+  
 

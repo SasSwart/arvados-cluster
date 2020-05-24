@@ -28,8 +28,9 @@ postgres:
   databases:
     arvados:
       owner: arvados
-      lc_ctype: en_US.utf8
-      lc_collate: en_US.utf8
+      lc_ctype: 'en_US.UTF-8'
+      lc_collate: 'en_US.UTF-8'
+      template: 'template0'
       # tablespace: arvados_tablespace
       schemas:
         public:
