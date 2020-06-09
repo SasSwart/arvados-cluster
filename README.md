@@ -1,1 +1,27 @@
-# arvados-cluster
+## Getting Started
+
+### Salt Master
+**Install Salt in an Ubuntu 18.04 environment** 
+> apt-get update && apt-get install salt-api salt-cloud salt-master salt-minion salt-ssh salt-syndic
+
+Official Ubuntu installation instructions [here](https://docs.saltstack.com/en/master/topics/installation/ubuntu.html).
+
+**Configure the Salt Master**
+
+Clone this repo into a directory of your choice on the master, and note that path as `<repo_path>` for use below.
+
+The default configuration file is `/etc/salt/master`. Important changes below:
+```
+interface: <interface on which to listen, or 0.0.0.0>
+file_roots:
+  base:
+    - '<repo_path>/include/*'
+    - '<repo_path>/custom'
+fileserver_backend:
+  - roots
+pillar_roots:
+  base:
+    - <repo_path>/pillar
+```
+
+The complete configuration reference is available [here](https://docs.saltstack.com/en/master/ref/configuration/master.html#configuration-salt-master)
