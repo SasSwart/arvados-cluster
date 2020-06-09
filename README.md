@@ -35,3 +35,12 @@ pillar_roots:
 ```
 
 The complete configuration reference is available [here](https://docs.saltstack.com/en/master/ref/configuration/master.html#configuration-salt-master)
+
+**Enable the Salt master service**
+
+`sudo systemctl enable --now salt-master`
+
+### DNS
+
+Salt minions will automatically connect the whichever host the `salt` dns record resolves to.
+Hence, add an A or CNAME record called `salt` to your DNS that resolves to your salt master host.
