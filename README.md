@@ -1,8 +1,10 @@
-## Getting Started
+# Build an Arvados Cluster using Salt
 
 This repository supplements the one available [here](https://github.com/gijzelaerr/bio_cluster).
-Follow the README in the above repository in order to provision VMs in the SURFsara HPC cloud.
+Follow the README in the said repository in order to provision VMs in the SURFsara HPC cloud.
 Then use this repository to install the Arvados cluster using Salt.
+
+## Getting Started
 
 ### Salt Master
 **Install Salt in an Ubuntu 18.04 environment** 
