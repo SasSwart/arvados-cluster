@@ -12,7 +12,9 @@ Then use this repository to install the Arvados cluster using Salt.
 Follow the instructions [here](https://repo.saltstack.com/#ubuntu)
 
 Then:
-> apt-get update && apt-get install salt-api salt-cloud salt-master salt-minion salt-ssh salt-syndic
+```
+apt-get update && apt-get install salt-api salt-cloud salt-master salt-minion salt-ssh salt-syndic
+```
 
 Packages in the above command listed [here](https://docs.saltstack.com/en/master/topics/installation/ubuntu.html).
 
@@ -52,9 +54,13 @@ Follow the instructions [here](https://repo.saltstack.com/#ubuntu)
 
 Then run:
 
-```apt-get update && apt-get install salt-minion```
+```
+apt-get update && apt-get install salt-minion
+```
 
-```sudo systemctl enable --now salt-minion```
+```
+sudo systemctl enable --now salt-minion
+```
 
 The default configuration file should be sufficient.
 
@@ -64,11 +70,24 @@ Each Salt minion will attempt to connect to whichever host is available at the `
 It will then send a public key to that master.
 
 To allow the minion to be managed by the master, accept the minion's key on the master as follows:
-`salt-key -a <minion-id>`
+```
+salt-key -a <minion-id>
+```
 
 The `<minion-id>` should correspond to the hostname of the minion.
 
-Keys, both accepted and unaccepted, can be listed by running `salt-key` without any arguments
+Keys, both accepted and unaccepted, can be listed by running `salt-key` without any arguments. Example output:
+
+```
+user@workstation:~$ sudo salt-key
+Accepted Keys:
+arvados
+Denied Keys:
+Unaccepted Keys:
+Rejected Keys:
+```
 
 Keys can be deleted by running:
-```salt-key -d <minion-id>```
+```
+salt-key -d <minion-id>
+```
