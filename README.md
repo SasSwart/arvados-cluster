@@ -2,9 +2,13 @@
 
 ### Salt Master
 **Install Salt in an Ubuntu 18.04 environment** 
+
+Follow the instructions [here](https://repo.saltstack.com/#ubuntu)
+
+Then:
 > apt-get update && apt-get install salt-api salt-cloud salt-master salt-minion salt-ssh salt-syndic
 
-Official Ubuntu installation instructions [here](https://docs.saltstack.com/en/master/topics/installation/ubuntu.html).
+Packages in the above command listed [here](https://docs.saltstack.com/en/master/topics/installation/ubuntu.html).
 
 **Configure the Salt Master**
 
