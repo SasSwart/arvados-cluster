@@ -4,7 +4,60 @@ This repository supplements the one available [here](https://github.com/gijzelae
 Follow the README in the said repository in order to provision VMs in the SURFsara HPC cloud.
 Then use this repository to install the Arvados cluster using Salt.
 
+# links
+
+## the COVID-19 hackathon
+ * https://github.com/virtual-biohackathons/covid-19-bh20
+
+## The SURFsara HPC cloud
+ * https://ui.hpccloud.surfsara.nl/
+ * https://doc.hpccloud.surfsara.nl/
+
+## arvados
+ * https://arvados.org/
+ * https://doc.arvados.org/v2.0/install/install-manual-prerequisites.html
+
 ## Getting Started
+
+Read the top of init.py and follow the instructions
+
+```
+python3 -m venv env3
+. env3/bin/activate
+pip install -U pip
+pip install -U setuptools wheel
+pip install -rrequirements.txt
+python init.py
+```
+
+### Provisioning
+
+#### main server
+1 node
+16+ GiB RAM
+4+ cores
+fast disk for database
+
+#### SSO
+1 node
+2 GB ram
+ 
+#### Workbench
+1 node
+8 GB ram
+2+ cores
+ 
+#### keepstore servers
+2+ nodes
+4 GiB RAM
+
+#### compute worker nodes
+0+ nodes
+Depends on workload; scaled dynamically in the cloud
+
+#### user shell nodes
+0+
+Depends on workload
 
 ### Configuring a Salt Master on Ubuntu 18.04
 **Install Packages** 
