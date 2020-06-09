@@ -91,3 +91,8 @@ Keys can be deleted by running:
 ```
 salt-key -d <minion-id>
 ```
+
+## Running Salt
+```
+salt <minion-id or '*'> state.apply
+```
