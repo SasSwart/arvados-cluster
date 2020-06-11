@@ -1,0 +1,9 @@
+version: '3'
+services:
+  salt-cloud:
+    build: ./
+    volumes:
+    - ./cloud/providers/:/etc/salt/cloud.providers.d/
+    - ./cloud/profiles/:/etc/salt/cloud.profiles.d/
+    - ~/.ssh/id_rsa:/root/id_rsa
+    - ./cloud/map:/root/map

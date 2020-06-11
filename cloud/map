@@ -1,0 +1,17 @@
+basic:
+  - salt_master:
+      make_master: True
+      memory: 16384
+      cpu: 4
+      vcpu: 4
+  - arvados_sso:
+      memory: 8192
+  - arvados_workbench:
+      memory: 8192
+      cpu: 2
+  - arvados_keepstore1:
+      memory: 4096
+      cpu: 2
+  - arvados_keepstore2:
+      memory: 4096
+      cpu: 2
