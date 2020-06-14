@@ -20,6 +20,7 @@ ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "git clone --recursive $REPO ~/arvados"
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "cd ~/arvados && git pull && git submodule update --init"
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo cp ~/arvados/cloud/roots.conf /etc/salt/master.d/roots.conf"
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo systemctl restart salt-master.service"
 
 # Apply state to all minions
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo salt '*' state.apply"
