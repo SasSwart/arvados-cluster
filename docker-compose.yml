@@ -1,9 +1,26 @@
 version: '3'
 services:
-  salt-cloud:
+  provision:
+    build: ./
+    volumes:
+    - ./cloud/providers/:/etc/salt/cloud.providers.d/
+    - ./cloud/profiles/:/etc/salt/cloud.profiles.d/
+    - ~/.ssh/id_rsa:/root/id_rsa
+    - ./cloud/:/root/cloud/
+    entrypoint: /root/cloud/provision.sh
+  destroy:
     build: ./
     volumes:
     - ./cloud/providers/:/etc/salt/cloud.providers.d/
     - ./cloud/profiles/:/etc/salt/cloud.profiles.d/
     - ~/.ssh/id_rsa:/root/id_rsa
     - ./cloud/map:/root/map
+    entrypoint: salt-cloud -y -m /root/map -P -d
+  list-nodes:
+    build: ./
+    volumes:
+    - ./cloud/providers/:/etc/salt/cloud.providers.d/
+    - ./cloud/profiles/:/etc/salt/cloud.profiles.d/
+    - ~/.ssh/id_rsa:/root/id_rsa
+    - ./cloud/map:/root/map
+    entrypoint: salt-cloud -f list_nodes surfsara --out=json

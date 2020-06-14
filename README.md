@@ -19,10 +19,16 @@
 ## Provisioning
 Set your SURFsara username and password in cloud/surfsara.conf
 
-Run:
+To build an Arvados cluster, run:
 ```
-docker-compose run salt-cloud
+docker-compose run provision
 ```
+
+To destroy an Arvados cluster, run:
+```
+docker-compose run destroy
+```
+
 ## Specs
 See `cloud/map`
 ### main server
