@@ -69,58 +69,58 @@ arvados:
       service:
         name: crunch-dispatch-local
         port: 9006
-#   keepproxy:
-#     pkg:
-#       name: keepproxy
-#     service:
-#       name: keepproxy
-#       port: 25107
-#   keepweb:
-#     pkg:
-#       name: keep-web
-#     service:
-#       name: keep-web
-#     #   webdav
-#       port: 9002
-#   keepstore:
-#     pkg:
-#       name: keepstore
-#     service:
-#       name: keepstore
-#       port: 25107
-#   githttpd:
-#     pkg:
-#       name: arvados-git-httpd
-#     service:
-#       name: arvados-git-httpd
-#       port: 9001
-#   shell:
-#     pkg:
-#       name:
-#         - arvados-client
-#         - arvados-src
-#         - libpam-arvados
-#         - python-arvados-fuse
-#         - python-arvados-python-client
-#         - python3-arvados-cwl-runner
-#     gem:
-#       name:
-#         - arvados-cli
-#         - arvados-login-sync
-#   workbench:
-#     pkg:
-#       name: arvados-workbench
-#     service:
-#       name: nginx
-#   websocket:
-#     pkg:
-#       name: arvados-ws
-#     service:
-#       name: arvados-ws
-#       port: 8005
-#   sso:
-#     pkg:
-#       name: arvados-sso
-#     service:
-#       name: arvados-sso
-#       port: 8900
+    keepproxy:
+      pkg:
+        name: keepproxy
+      service:
+        name: keepproxy
+        port: 25107
+    keepweb:
+      pkg:
+        name: keep-web
+      service:
+        name: keep-web
+      #   webdav
+        port: 9002
+    keepstore:
+      pkg:
+        name: keepstore
+      service:
+        name: keepstore
+        port: 25107
+    githttpd:
+      pkg:
+        name: arvados-git-httpd
+      service:
+        name: arvados-git-httpd
+        port: 9001
+    shell:
+      pkg:
+        name:
+          - arvados-client
+          - arvados-src
+          - libpam-arvados
+          - python-arvados-fuse
+          - python-arvados-python-client
+          - python3-arvados-cwl-runner
+      gem:
+        name:
+          - arvados-cli
+          - arvados-login-sync
+    workbench:
+      pkg:
+        name: arvados-workbench
+      service:
+        name: nginx
+    websocket:
+      pkg:
+        name: arvados-ws
+      service:
+        name: arvados-ws
+        port: 8005
+    sso:
+      pkg:
+        name: arvados-sso
+      service:
+        name: arvados-sso
+        port: 8900
