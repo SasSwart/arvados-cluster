@@ -9,3 +9,4 @@ apt_https:
     - dirmngr
     - apt-transport-https
     - ca-certificates
+    - ssl-cert

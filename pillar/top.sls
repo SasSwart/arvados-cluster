@@ -8,3 +8,4 @@ base:
   'arvados_workbench':
     - nginx
     - nginx_workbench
+    - arvados
