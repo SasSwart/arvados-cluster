@@ -23,8 +23,6 @@ arvados:
 
     volumes:
       volume_one:
-        # the volume name will be composed with
-        # <cluster>-nyw5e-<volume>
         cluster: fixme
         volume_id: '000000000000000'
         access_via_hosts:
@@ -64,8 +62,6 @@ arvados:
       pkg:
         name:
           - crunch-dispatch-local
-        #   - arvados-dispatch-cloud
-        #   - crunch-dispatch-slurm
       service:
         name: crunch-dispatch-local
         port: 9006
@@ -80,7 +76,6 @@ arvados:
         name: keep-web
       service:
         name: keep-web
-      #   webdav
         port: 9002
     keepstore:
       pkg:
