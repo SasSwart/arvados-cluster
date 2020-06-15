@@ -9,7 +9,6 @@ base:
     - arvados.repo
     - arvados.api
     - arvados.controller
-  'arvados_sso':
   'arvados_workbench':
     - arvados.workbench
   'arvados_keepstore*':
