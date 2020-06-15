@@ -1,15 +1,17 @@
 base:
   '*':
     - base
+    - arvados.repo
     - arvados.shell
   'salt_master':
     - postgres
     - nginx
     - nginx.passenger
-    - arvados.repo
     - arvados.api
     - arvados.controller
   'arvados_workbench':
+    - nginx
+    - nginx.passenger
     - arvados.workbench
   'arvados_keepstore*':
     - arvados.keepstore
