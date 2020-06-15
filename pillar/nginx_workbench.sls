@@ -1,26 +1,19 @@
 ---
 {% set nginx_log = '/var/log/nginx' %}
 
-### ARVADOS
 arvados:
   config:
     group: www-data
 
-### NGINX
 nginx:
-  ### SERVER
   server:
     config:
-
-      ### STREAMS
       http:
         upstream workbench_upstream:
           - server: '127.0.0.1:9000 fail_timeout=10s'
 
-  ### SITES
   servers:
     managed:
-      ### DEFAULT
       arvados_workbench_default:
         enabled: true
         overwrite: true
@@ -66,6 +59,5 @@ nginx:
             - server_name: workbench
             - root: /var/www/arvados-workbench/current/public
             - index:  index.html index.htm
-            # yamllint disable-line rule:line-length
             - access_log: {{ nginx_log }}/workbench.host-s.net-upstream.access.log combined
             - error_log: {{ nginx_log }}/workbench.host-s.net-upstream.error.log
