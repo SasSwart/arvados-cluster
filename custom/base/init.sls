@@ -10,3 +10,10 @@ apt_https:
     - apt-transport-https
     - ca-certificates
     - ssl-cert
+
+/var/www:
+  file.directory:
+    - user: root
+    - group: root
+    - mode: 755
+    - makedirs: True

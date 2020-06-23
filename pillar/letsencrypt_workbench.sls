@@ -13,7 +13,7 @@ letsencrypt:
     server = https://acme-v01.api.letsencrypt.org/directory
     email = sasswartcdk@protonmail.com
     authenticator = webroot
-    webroot-path = /var/lib/www
+    webroot-path = /var/www
     agree-tos = True
     renew-by-default = True
   config_dir:
