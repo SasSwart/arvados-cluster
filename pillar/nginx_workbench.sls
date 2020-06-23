@@ -1,5 +1,6 @@
 ---
 {% set nginx_log = '/var/log/nginx' %}
+{% set domain = 'arvados-workbench.covid19workflows-vu.surf-hosted.nl' %}
 
 arvados:
   config:
@@ -19,7 +20,7 @@ nginx:
         overwrite: true
         config:
           - server:
-            - server_name: arvados-workbench.covid19workflows-vu.surf-hosted.nl
+            - server_name: {{ domain }}
             - listen:
               - 80
             - location /.well-known:
@@ -32,7 +33,7 @@ nginx:
         overwrite: true
         config:
           - server:
-            - server_name: arvados-workbench.covid19workflows-vu.surf-hosted.nl
+            - server_name: {{ domain }}
             - listen:
               - 443 http2 ssl
             - index: index.html index.htm
@@ -45,9 +46,9 @@ nginx:
               - proxy_set_header: 'Host $http_host'
               - proxy_set_header: 'X-Real-IP $remote_addr'
               - proxy_set_header: 'X-Forwarded-For $proxy_add_x_forwarded_for'
-            - include: 'snippets/letsencrypt.conf'
-            - access_log: {{ nginx_log }}/arvados-workbench.covid19workflows-vu.surf-hosted.nl.access.log combined
-            - error_log: {{ nginx_log }}/arvados-workbench.covid19workflows-vu.surf-hosted.nl.error.log
+            - include: 'snippets/ssl.conf'
+            - access_log: {{ nginx_log }}/{{ domain }}.access.log combined
+            - error_log: {{ nginx_log }}/{{ domain }}.error.log
 
       arvados_workbench_upstream:
         enabled: true
@@ -55,8 +56,8 @@ nginx:
         config:
           - server:
             - listen: '127.0.0.1:9000'
-            - server_name: arvados-workbench.covid19workflows-vu.surf-hosted.nl
+            - server_name: {{ domain }}
             - root: /var/www/arvados-workbench/current/public
             - index:  index.html index.htm
-            - access_log: {{ nginx_log }}/arvados-workbench.covid19workflows-vu.surf-hosted.nl-upstream.access.log combined
-            - error_log: {{ nginx_log }}/arvados-workbench.covid19workflows-vu.surf-hosted.nl-upstream.error.log
+            - access_log: {{ nginx_log }}/{{ domain }}-upstream.access.log combined
+            - error_log: {{ nginx_log }}/{{ domain }}-upstream.error.log
