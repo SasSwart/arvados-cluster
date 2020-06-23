@@ -1,5 +1,5 @@
 basic:
-  - salt_master:
+  - salt_leader:
       make_master: True
       memory: 16384
       cpu: 4

@@ -3,7 +3,8 @@ base:
     - base
     - arvados.repo
     - arvados.shell
-  'salt_master':
+  'salt_leader':
+    - salt_leader
     - postgres
     - nginx
     - nginx.passenger

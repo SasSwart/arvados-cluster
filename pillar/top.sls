@@ -1,5 +1,5 @@
 base:
-  'salt_master':
+  'salt_leader':
     - postgresql
     - nginx
     - arvados

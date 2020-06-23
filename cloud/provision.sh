@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER="ubuntu"
-MASTER="salt_master"
+MASTER="salt_leader"
 PRIVATE_KEY="/root/id_rsa"
 REPO="https://github.com/SasSwart/arvados-cluster.git"
 
