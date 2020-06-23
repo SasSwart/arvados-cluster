@@ -6,13 +6,9 @@ letsencrypt:
   # you want to use, check https://certbot.eff.org/all-instructions
   # Usually, you'll need a single one, but you can also add other plugins here.
   pkgs:
-    - python-certbot-apache
+    - python-certbot-nginx
   # Only used for the git install method (use_package: false)
   cli_install_dir: /opt/letsencrypt
-  # Only used for the git install method (use_package: false). If you want to
-  # have specific version of certbot you can enable it. The version value
-  # should match a certbot/certbot branch.
-  version: 0.30.x
   config: |
     server = https://acme-v01.api.letsencrypt.org/directory
     email = sasswartcdk@protonmail.com
