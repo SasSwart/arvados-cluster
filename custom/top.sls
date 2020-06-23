@@ -4,7 +4,6 @@ base:
     - arvados.repo
     - arvados.shell
   'salt_leader':
-    - salt_leader
     - postgres
     - nginx
     - nginx.passenger
