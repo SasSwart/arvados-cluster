@@ -26,7 +26,6 @@ ferm:
     - watch:
       - pkg: ferm
       - file: /etc/ferm/ferm.conf
-      - file: /etc/ferm/conf.d/*
 
 
 /etc/ferm/ferm.conf:
