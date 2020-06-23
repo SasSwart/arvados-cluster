@@ -9,3 +9,4 @@ base:
     - nginx
     - nginx_workbench
     - arvados
+    - letsencrypt_workbench
