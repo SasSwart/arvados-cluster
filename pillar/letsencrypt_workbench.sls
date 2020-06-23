@@ -10,7 +10,7 @@ letsencrypt:
   # Only used for the git install method (use_package: false)
   cli_install_dir: /opt/letsencrypt
   config: |
-    server = https://acme-v01.api.letsencrypt.org/directory
+    server = https://acme-v02.api.letsencrypt.org/directory
     email = sasswartcdk@protonmail.com
     authenticator = webroot
     webroot-path = /var/www
