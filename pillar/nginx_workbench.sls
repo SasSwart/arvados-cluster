@@ -45,8 +45,7 @@ nginx:
               - proxy_set_header: 'Host $http_host'
               - proxy_set_header: 'X-Real-IP $remote_addr'
               - proxy_set_header: 'X-Forwarded-For $proxy_add_x_forwarded_for'
-            # - include: 'snippets/letsencrypt.conf'
-            - include: 'snippets/snakeoil.conf'
+            - include: 'snippets/letsencrypt.conf'
             - access_log: {{ nginx_log }}/arvados-workbench.covid19workflows-vu.surf-hosted.nl.access.log combined
             - error_log: {{ nginx_log }}/arvados-workbench.covid19workflows-vu.surf-hosted.nl.error.log
 
