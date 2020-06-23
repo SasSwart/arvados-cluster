@@ -7,3 +7,6 @@
 [submodule "include/postgres"]
 	path = include/postgres
 	url = https://github.com/saltstack-formulas/postgres-formula.git
+[submodule "include/letsencrypt-formula"]
+	path = include/letsencrypt-formula
+	url = https://github.com/saltstack-formulas/letsencrypt-formula.git
