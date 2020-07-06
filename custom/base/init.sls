@@ -18,16 +18,6 @@ apt_https:
     - mode: 755
     - makedirs: True
 
-ferm:
-  pkg:
-  - installed
-  service:
-    - enabled
-    - watch:
-      - pkg: ferm
-      - file: /etc/ferm/ferm.conf
-
-
 /etc/ferm/ferm.conf:
   file.managed:
     - source: salt://base/ferm.conf
@@ -41,3 +31,13 @@ ferm:
     - group: root
     - mode: 755
     - makedirs: True
+
+ferm:
+  pkg:
+  - installed
+  service.running:
+    - enable: True
+    - reload: True
+    - watch:
+      - pkg: ferm
+      - file: /etc/ferm/ferm.conf
