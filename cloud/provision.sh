@@ -22,5 +22,8 @@ ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo cp ~/arvados/cloud/roots.conf /etc/salt/master.d/roots.conf"
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo systemctl restart salt-master.service"
 
-# Apply state to all minions
+# Apply state to master
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo salt 'salt_leader' state.apply"
+
+# Apply state to all
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo salt '*' state.apply"
