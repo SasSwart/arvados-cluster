@@ -1,6 +1,7 @@
 ---
 {% set nginx_log = '/var/log/nginx' %}
-{% set domain = 'arvados-workbench.covid19workflows-vu.surf-hosted.nl' %}
+{% set domain = 'covid19workflows-vu.surf-hosted.nl' %}
+{% set hostname = 'arvados-workbench' %}
 
 arvados:
   config:
@@ -20,7 +21,7 @@ nginx:
         overwrite: true
         config:
           - server:
-            - server_name: {{ domain }}
+            - server_name: "{{ hostname }}.{{ domain }}"
             - listen:
               - 80
             - location /.well-known:

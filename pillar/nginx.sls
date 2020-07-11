@@ -18,6 +18,10 @@ nginx:
 
   servers:
     managed:
-      # Remove default webserver
+      {# Remove default webserver #}
       default:
         enabled: false
+  snippets:
+    letsencrypt.conf:
+      - location ^~ /.well-known/acme-challenge/:
+          - proxy_pass: http://localhost:9999

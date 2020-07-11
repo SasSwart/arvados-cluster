@@ -2,7 +2,7 @@
 states:
   - postgres
 
-### POSTGRESQL
+{# POSTGRESQL #}
 postgres:
   use_upstream_repo: false
   pkgs_extra:
@@ -20,10 +20,10 @@ postgres:
       ensure: present
       password: changeme_arvados
 
-  # tablespaces:
-  #   arvados_tablespace:
-  #     directory: /path/to/some/tbspace/arvados_tbsp
-  #     owner: arvados
+  {# tablespaces:
+     arvados_tablespace:
+       directory: /path/to/some/tbspace/arvados_tbsp
+       owner: arvados #}
 
   databases:
     arvados:
@@ -31,7 +31,7 @@ postgres:
       lc_ctype: 'en_US.UTF-8'
       lc_collate: 'en_US.UTF-8'
       template: 'template0'
-      # tablespace: arvados_tablespace
+      {# tablespace: arvados_tablespace #}
       schemas:
         public:
           owner: arvados

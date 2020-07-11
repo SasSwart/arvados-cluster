@@ -1,13 +1,15 @@
 ---
 {% set nginx_log = '/var/log/nginx' %}
+{% set domain = 'covid19workflows-vu.surf-hosted.nl' %}
+{% set hostname = 'salt-leader' %}
 
-### NGINX
+{# NGINX #}
 nginx:
-  ### SERVER
+  {# SERVER #}
   server:
     config:
 
-      ### STREAMS
+      {# STREAMS #}
       http:
         'geo $external_client':
           default: 1
@@ -15,16 +17,16 @@ nginx:
         upstream controller_upstream:
           - server: 'localhost:8003  fail_timeout=10s'
 
-  ### SITES
+  {# SITES #}
   servers:
     managed:
-      ### DEFAULT
+      {# DEFAULT #}
       arvados_controller_default:
         enabled: true
         overwrite: true
         config:
           - server:
-            - server_name: example.net api.example.net
+            - server_name: {{ hostname }}.{{ domain }} api.{{ hostname }}.{{ domain }}
             - listen:
               - 80 default
             - location /.well-known:
@@ -37,7 +39,7 @@ nginx:
         overwrite: true
         config:
           - server:
-            - server_name: example.net
+            - server_name: {{ hostname }}.{{ domain }}
             - listen:
               - 443 http2 ssl
             - index: index.html index.htm
@@ -51,8 +53,10 @@ nginx:
               - proxy_set_header: 'X-Real-IP $remote_addr'
               - proxy_set_header: 'X-Forwarded-For $proxy_add_x_forwarded_for'
               - proxy_set_header: 'X-External-Client $external_client'
-            # - include: 'snippets/letsencrypt.conf'
-            - include: 'snippets/snakeoil.conf'
+            - ssl_certificate: /etc/letsencrypt/live/salt-leader.covid19workflows-vu.surf-hosted.nl/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/salt-leader.covid19workflows-vu.surf-hosted.nl/privkey.pem
+            - include: 'snippets/letsencrypt.conf'
+            {# - include: 'snippets/snakeoil.conf' #}
             - access_log: {{ nginx_log }}/example.net.access.log combined
             - error_log: {{ nginx_log }}/example.net.error.log
             - client_max_body_size: 128m

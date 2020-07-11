@@ -1,7 +1,10 @@
+{% set domain = 'covid19workflows-vu.surf-hosted.nl' %}
+{% set hostname = 'salt-leader' %}
+
 arvados:
   cluster:
-    name: test_cluster
-    domain: host-s.net
+    name: {{ hostname }}
+    domain: {{ hostname }}.{{ domain }}
 
     database:
       name: arvados
@@ -26,7 +29,7 @@ arvados:
         cluster: fixme
         volume_id: '000000000000000'
         access_via_hosts:
-          "http://arvados.host-s.net:25107/": {}
+          "http://{{ hostname }}.{{domain}}:25107/": {}
         replication: 2
         driver: Directory
         driver_parameters:
