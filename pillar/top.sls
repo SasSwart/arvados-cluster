@@ -11,3 +11,5 @@ base:
     - nginx_workbench
     - arvados
     - letsencrypt_workbench
+  'arvados_keep*':
+    - arvados

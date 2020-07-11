@@ -9,9 +9,9 @@ basic:
   - arvados_workbench:
       memory: 8192
       cpu: 2
-  - arvados_keepstore1:
+  - keep0:
       memory: 4096
       cpu: 2
-  - arvados_keepstore2:
+  - keep1:
       memory: 4096
       cpu: 2

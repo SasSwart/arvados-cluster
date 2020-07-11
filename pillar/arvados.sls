@@ -4,7 +4,7 @@
 arvados:
   cluster:
     name: {{ hostname }}
-    domain: {{ hostname }}.{{ domain }}
+    domain: {{ domain }}
 
     database:
       name: arvados
@@ -29,7 +29,7 @@ arvados:
         cluster: fixme
         volume_id: '000000000000000'
         access_via_hosts:
-          "http://{{ hostname }}.{{domain}}:25107/": {}
+          "http://keep0.{{domain}}:25107/": {}
         replication: 2
         driver: Directory
         driver_parameters:
