@@ -4,14 +4,21 @@ basic:
       memory: 16384
       cpu: 4
       vcpu: 4
+      minion:
+        master: salt-leader.covid19workflows-vu.surf-hosted.nl
   - arvados_sso:
       memory: 8192
+      minion:
+        master: salt-leader.covid19workflows-vu.surf-hosted.nl
   - arvados_workbench:
       memory: 8192
       cpu: 2
+      minion:
+        master: salt-leader.covid19workflows-vu.surf-hosted.nl
+keep:
   - keep0:
-      memory: 4096
-      cpu: 2
+      minion:
+        master: salt-leader.covid19workflows-vu.surf-hosted.nl
   - keep1:
-      memory: 4096
-      cpu: 2
+      minion:
+        master: salt-leader.covid19workflows-vu.surf-hosted.nl
