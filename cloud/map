@@ -1,24 +1,24 @@
 basic:
-  - salt_leader:
+  - hackathon:
       make_master: True
       memory: 16384
       cpu: 4
       vcpu: 4
       minion:
-        master: salt-leader.covid19workflows-vu.surf-hosted.nl
-  - arvados_sso:
+        master: hackathon.covid19workflows-vu.surf-hosted.nl
+  - sso.hackathon:
       memory: 8192
       minion:
-        master: salt-leader.covid19workflows-vu.surf-hosted.nl
-  - arvados_workbench:
+        master: hackathon.covid19workflows-vu.surf-hosted.nl
+  - workbench.hackathon:
       memory: 8192
       cpu: 2
       minion:
-        master: salt-leader.covid19workflows-vu.surf-hosted.nl
+        master: hackathon.covid19workflows-vu.surf-hosted.nl
 keep:
-  - keep0:
+  - keep0.hackathon:
       minion:
-        master: salt-leader.covid19workflows-vu.surf-hosted.nl
-  - keep1:
+        master: hackathon.covid19workflows-vu.surf-hosted.nl
+  - keep1.hackathon:
       minion:
-        master: salt-leader.covid19workflows-vu.surf-hosted.nl
+        master: hackathon.covid19workflows-vu.surf-hosted.nl

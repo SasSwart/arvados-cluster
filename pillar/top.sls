@@ -1,5 +1,5 @@
 base:
-  'salt_leader':
+  'hackathon':
     - postgresql
     - nginx
     - arvados
@@ -11,5 +11,5 @@ base:
     - nginx_workbench
     - arvados
     - letsencrypt_workbench
-  'arvados_keep*':
+  'keep*':
     - arvados

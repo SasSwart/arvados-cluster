@@ -1,5 +1,5 @@
 {% set domain = 'covid19workflows-vu.surf-hosted.nl' %}
-{% set hostname = 'salt-leader' %}
+{% set hostname = 'hackathon' %}
 
 arvados:
   cluster:
@@ -26,10 +26,11 @@ arvados:
 
     volumes:
       volume_one:
-        cluster: fixme
+        cluster: {{ hostname }}
         volume_id: '000000000000000'
         access_via_hosts:
           "http://keep0.{{domain}}:25107/": {}
+          "http://keep1.{{domain}}:25107/": {}
         replication: 2
         driver: Directory
         driver_parameters:
