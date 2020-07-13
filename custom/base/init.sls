@@ -11,6 +11,13 @@ apt_https:
     - ca-certificates
     - ssl-cert
 
+/etc/arvados:
+  file.directory:
+    - user: root
+    - group: root
+    - mode: 755
+    - makedirs: True
+
 /var/www:
   file.directory:
     - user: root

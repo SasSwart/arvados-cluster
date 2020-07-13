@@ -1,7 +1,7 @@
 ---
 {% set nginx_log = '/var/log/nginx' %}
 {% set domain = 'covid19workflows-vu.surf-hosted.nl' %}
-{% set hostname = 'arvados-workbench' %}
+{% set hostname = 'workbench' %}
 
 arvados:
   config:
@@ -47,7 +47,10 @@ nginx:
               - proxy_set_header: 'Host $http_host'
               - proxy_set_header: 'X-Real-IP $remote_addr'
               - proxy_set_header: 'X-Forwarded-For $proxy_add_x_forwarded_for'
-            - include: 'snippets/ssl.conf'
+            - ssl_certificate: /etc/letsencrypt/live/workbench.covid19workflows-vu.surf-hosted.nl/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/workbench.covid19workflows-vu.surf-hosted.nl/privkey.pem
+            - include: 'snippets/letsencrypt.conf'
+            {# - include: 'snippets/snakeoil.conf' #}
             - access_log: {{ nginx_log }}/{{ domain }}.access.log combined
             - error_log: {{ nginx_log }}/{{ domain }}.error.log
 
@@ -62,3 +65,5 @@ nginx:
             - index:  index.html index.htm
             - access_log: {{ nginx_log }}/{{ domain }}-upstream.access.log combined
             - error_log: {{ nginx_log }}/{{ domain }}-upstream.error.log
+            - passenger_enabled: 'on'
+            - client_max_body_size: 128m

@@ -23,7 +23,7 @@ letsencrypt:
     mode: 755
   domainsets:
     www:
-      - arvados-workbench.covid19workflows-vu.surf-hosted.nl
+      - workbench.covid19workflows-vu.surf-hosted.nl
   {# # The post_renew cmds are executed via renew_letsencrypt_cert.sh after every
   # run. For more fine grain control, consider placing scripts in the pre,
   # post, and/or deploy directories within /etc/letsencrypt/renewal-hooks/. For
