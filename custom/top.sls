@@ -10,11 +10,11 @@ base:
     - nginx.passenger
     - arvados.api
     - arvados.controller
-  'workbench.hackathon':
+  'workbench':
     - nginx
     - nginx.passenger
     - arvados.workbench
     - letsencrypt
-  'keep*.hackathon':
+  'keep*':
     - arvados.keepstore
     - arvados.keepweb
