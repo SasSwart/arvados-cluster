@@ -15,6 +15,11 @@ base:
     - nginx.passenger
     - arvados.workbench
     - letsencrypt
-  'keep*':
+  'keep0':
     - arvados.keepstore
     - arvados.keepweb
+  'keep1':
+    - arvados.keepstore
+    - arvados.keepweb
+  'keep':
+    - arvados.keepproxy

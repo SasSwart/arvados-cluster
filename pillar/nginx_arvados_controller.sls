@@ -55,8 +55,8 @@ nginx:
               - proxy_set_header: 'X-External-Client $external_client'
             - ssl_certificate: /etc/letsencrypt/live/hackathon.covid19workflows-vu.surf-hosted.nl/fullchain.pem
             - ssl_certificate_key: /etc/letsencrypt/live/hackathon.covid19workflows-vu.surf-hosted.nl/privkey.pem
-            {# - include: 'snippets/letsencrypt.conf' #}
-            - include: 'snippets/snakeoil.conf'
+            - include: 'snippets/letsencrypt.conf'
+            {# - include: 'snippets/snakeoil.conf' #}
             - access_log: {{ nginx_log }}/example.net.access.log combined
             - error_log: {{ nginx_log }}/example.net.error.log
             - client_max_body_size: 128m
