@@ -11,7 +11,7 @@ letsencrypt:
   cli_install_dir: /opt/letsencrypt
   config: |
     server = https://acme-v02.api.letsencrypt.org/directory
-    email = sasswartcdk@protonmail.com
+    email = michael.crusoe@vu.nl 
     authenticator = webroot
     webroot-path = /var/www
     agree-tos = True

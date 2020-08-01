@@ -66,4 +66,5 @@ nginx:
             - access_log: {{ nginx_log }}/{{ domain }}-upstream.access.log combined
             - error_log: {{ nginx_log }}/{{ domain }}-upstream.error.log
             - passenger_enabled: 'on'
+            - passenger_user: 'www-data'
             - client_max_body_size: 128m

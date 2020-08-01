@@ -3,7 +3,7 @@
 
 arvados:
   cluster:
-    name: {{ hostname }}
+    name: 'testc'
     domain: {{ domain }}
 
     database:
@@ -15,19 +15,19 @@ arvados:
       client_encoding: UTF8
 
     tls:
-      insecure: true
+      insecure: false
 
     tokens:
-      system_root: changeme_system_root_token
-      management: changeme_management_token
-      rails_secret: changeme_rails_secret_token
-      anonymous_user: changeme_anonymous_user_token
-      provider_secret: changeme_provider_secret_token
+      system_root: x7Y25Dqe3qwGMZR6DJBTkgbo9iRnN5fK0Ktfdg1nBrEWICkI1S
+      management: GwDPWFaNN7vWLpNksXgd1OinUFRtIXfGmh5ChhDDbkE55XuUOU
+      rails_secret: zeBElZPOE9SgH8UBLATYPtEQR08REqwTzamC4OR8PqXhnHWD4G
+      anonymous_user: oZORRzsQP2RXEY6oJo7rEWVmD0Tf2hvUoZDOvrzzrZy23uzoT0
+      provider_secret: WWFUk2yOOoX4J7D7ZkbaITa9TLzavA6JuwEz93QUvcoBlZjNhG
 
     volumes:
       volume_one:
-        cluster: {{ hostname }}
-        volume_id: '000000000000000'
+        cluster: 'testc'
+        volume_id: '000000000000001'
         access_via_hosts:
           "http://keep0.{{domain}}:25107/": {}
           "http://keep1.{{domain}}:25107/": {}
@@ -37,12 +37,12 @@ arvados:
           Root: /tmp
 
     secrets:
-      blob_signing_key: changeme_blob_signing_key
-      workbench_secret_key: changeme_workbench_secret_key
-      dispatcher_access_key: changeme_dispatcher_access_key
-      dispatcher_secret_key: changeme_dispatcher_secret_key
-      keep_access_key: changeme_keep_access_key
-      keep_secret_key: changeme_keep_secret_key
+      blob_signing_key: ZlA9P6apFvmHgyUNc9sfNpqGL4sAx4Kr0mFRDBpUoBkyNc0kP0
+      workbench_secret_key: j8LYkESP8seSsDaPbgR40zTX1WsbmrNandZwdScqrTOAkrChs0
+      dispatcher_access_key: 5LYOKn7SAsUvpi7bOSBIxvb8ftQffjZSl8SoJpiOuXRMZ5W8qE
+      dispatcher_secret_key: XxqQ8wT9oIBKnRVHeBJPcQCksFz5XvriUNXvTYH0d1KU6hZg83
+      keep_access_key: lgGnWaUSCjMrGfHBNdCYUF1HuqSNs0jj4BQRivSrVSwPGuklLj
+      keep_secret_key: E1LxekzbhVghiJbhHxxdof2cnmYpz59VvY2awSjd106uHMTZxl
 
   api:
     pkg:
@@ -118,9 +118,3 @@ arvados:
     service:
       name: arvados-ws
       port: 8005
-  sso:
-    pkg:
-      name: arvados-sso
-    service:
-      name: arvados-sso
-      port: 8900
