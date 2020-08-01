@@ -1,4 +1,6 @@
 base:
+  '*':
+    - letsencrypt
   'hackathon':
     - postgresql
     - nginx
