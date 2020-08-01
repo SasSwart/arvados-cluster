@@ -25,5 +25,8 @@ ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_
 # Apply state to master
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo salt '$MASTER' state.apply"
 
+# Accept Salt keys
+ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo salt-key -A -y"
+
 # Apply state to all
 ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo salt '*' state.apply"
