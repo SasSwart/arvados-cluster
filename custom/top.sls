@@ -10,7 +10,7 @@ base:
     - nginx.passenger
     - arvados.api
     - arvados.controller
-  'wss':
+  'ws':
     - letsencrypt
     - postgres
     - nginx

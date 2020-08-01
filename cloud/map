@@ -15,7 +15,7 @@ basic:
       cpu: 2
       minion:
         master: hackathon.covid19workflows-vu.surf-hosted.nl
-  - wss:
+  - ws:
       memory: 8192
       cpu: 2
       minion:
