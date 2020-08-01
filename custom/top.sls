@@ -10,6 +10,12 @@ base:
     - nginx.passenger
     - arvados.api
     - arvados.controller
+  'wss':
+    - letsencrypt
+    - postgres
+    - nginx
+    - nginx.passenger
+    - arvados.websocket
   'workbench':
     - nginx
     - nginx.passenger
