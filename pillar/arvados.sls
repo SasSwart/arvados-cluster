@@ -118,3 +118,7 @@ arvados:
     service:
       name: arvados-ws
       port: 8005
+  sso:
+    use_controller: true
+    google_client_id: "778454352291-iingdndmvi0iv7rme36dujsammbfmldn.apps.googleusercontent.com"
+    google_client_secret: "NfKQf4HOwYGp1hYBWRiUCFr0"
