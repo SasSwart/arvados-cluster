@@ -7,3 +7,6 @@
 [submodule "include/letsencrypt-formula"]
 	path = include/letsencrypt-formula
 	url = https://github.com/saltstack-formulas/letsencrypt-formula.git
+[submodule "include/arvados"]
+	path = include/arvados
+	url = git@github.com:SasSwart/arvados-formula.git
