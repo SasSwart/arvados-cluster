@@ -21,7 +21,7 @@ basic:
       minion:
         master: hackathon.covid19workflows-vu.surf-hosted.nl
 keep:
-  - keep:
+  - collections:
       minion:
         master: hackathon.covid19workflows-vu.surf-hosted.nl
   - keep0:
