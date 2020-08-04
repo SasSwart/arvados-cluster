@@ -10,11 +10,6 @@ base:
     - nginx.passenger
     - arvados.api
     - arvados.controller
-  'ws':
-    - letsencrypt
-    - postgres
-    - nginx
-    - nginx.passenger
     - arvados.websocket
   'workbench':
     - nginx
@@ -27,5 +22,7 @@ base:
   'keep1':
     - arvados.keepstore
     - arvados.keepweb
-  'keep':
-    - arvados.keepproxy
+  'collections':
+    - nginx
+    - nginx.passenger
+    - arvados.keepweb
