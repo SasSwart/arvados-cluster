@@ -70,18 +70,15 @@ arvados:
     service:
       name: crunch-dispatch-local
       port: 9006
-  keepproxy:
-    pkg:
-      name: keepproxy
-    service:
-      name: keepproxy
-      port: 25107
   keepweb:
     pkg:
       name: keep-web
     service:
       name: keep-web
       port: 9002
+  webdav:
+    download:
+      hostname: 'collections'
   keepstore:
     pkg:
       name: keepstore

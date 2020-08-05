@@ -25,4 +25,5 @@ base:
   'collections':
     - nginx
     - nginx.passenger
+    - letsencrypt
     - arvados.keepweb

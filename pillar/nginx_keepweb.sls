@@ -35,7 +35,7 @@ nginx:
         overwrite: true
         config:
           - server:
-            - server_name: collections.example.net download.example.net
+            - server_name: collections.{{ domain }} download.{{ domain }}
             - listen:
               - 443 http2 ssl
             - index: index.html index.htm
@@ -52,7 +52,9 @@ nginx:
             - client_max_body_size: 0
             - proxy_http_version: '1.1'
             - proxy_request_buffering: 'off'
-            # - include: 'snippets/letsencrypt.conf'
-            - include: 'snippets/snakeoil.conf'
+            - ssl_certificate: /etc/letsencrypt/live/collections.covid19workflows-vu.surf-hosted.nl/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/collections.covid19workflows-vu.surf-hosted.nl/privkey.pem
+            - include: 'snippets/letsencrypt.conf'
+            {# - include: 'snippets/snakeoil.conf' #}
             - access_log: {{ nginx_log }}/collections.example.net.access.log combined
             - error_log: {{ nginx_log }}/collections.example.net.error.log

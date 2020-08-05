@@ -16,6 +16,7 @@ base:
   'collections':
     - nginx
     - nginx_keepweb
+    - arvados
     - letsencrypt_keepweb
   'keep*':
     - arvados
