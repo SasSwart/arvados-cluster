@@ -9,4 +9,4 @@
 	url = https://github.com/saltstack-formulas/letsencrypt-formula.git
 [submodule "include/arvados"]
 	path = include/arvados
-	url = git@github.com:SasSwart/arvados-formula.git
+	url = https://github.com/SasSwart/arvados-formula.git
