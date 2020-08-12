@@ -1,10 +1,10 @@
-{% set domain = 'covid19workflows-vu.surf-hosted.nl' %}
+{% import "./common.sls" as common -%}
 {% set hostname = 'hackathon' %}
 
 arvados:
   cluster:
     name: 'testc'
-    domain: {{ domain }}
+    domain: {{ common.domain }}
 
     database:
       name: arvados
@@ -29,8 +29,8 @@ arvados:
         cluster: 'testc'
         volume_id: '000000000000001'
         access_via_hosts:
-          "http://keep0.{{domain}}:25107/": {}
-          "http://keep1.{{domain}}:25107/": {}
+          "http://keep0.{{common.domain}}:25107/": {}
+          "http://keep1.{{common.domain}}:25107/": {}
         replication: 2
         driver: Directory
         driver_parameters:

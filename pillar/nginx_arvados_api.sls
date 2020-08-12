@@ -1,4 +1,5 @@
 ---
+{% import "./common.sls" as common -%}
 {% set nginx_log = '/var/log/nginx' %}
 
 arvados:
@@ -17,7 +18,7 @@ nginx:
             - server_name: api
             - root: /var/www/arvados-api/current/public
             - index:  index.html index.htm
-            - access_log: {{ nginx_log }}/api.example.net-upstream.access.log combined
-            - error_log: {{ nginx_log }}/api.example.net-upstream.error.log
+            - access_log: {{ nginx_log }}/api.{{ common.domain }}-upstream.access.log combined
+            - error_log: {{ nginx_log }}/api.{{ common.domain }}-upstream.error.log
             - passenger_enabled: 'on'
             - client_max_body_size: 128m

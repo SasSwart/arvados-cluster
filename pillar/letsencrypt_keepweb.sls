@@ -1,5 +1,6 @@
 ---
+{% import "./common.sls" as common -%}
 letsencrypt:
   domainsets:
     www:
-      - collections.covid19workflows-vu.surf-hosted.nl
+      - collections.{{ common.domain }}

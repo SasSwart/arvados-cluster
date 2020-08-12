@@ -1,27 +1,27 @@
 ---
+{% import "./common.sls" as common -%}
 {% set nginx_log = '/var/log/nginx' %}
-{% set domain = 'covid19workflows-vu.surf-hosted.nl' %}
 {% set hostname = 'collections' %}
 
-### NGINX
+{# NGINX #}
 nginx:
-  ### SERVER
+  {# SERVER #}
   server:
     config:
-      ### STREAMS
+      {# STREAMS #}
       http:
         upstream collections_downloads_upstream:
           - server: '127.0.0.1:9002 fail_timeout=10s'
 
   servers:
     managed:
-      ### DEFAULT
+      {# DEFAULT #}
       arvados_collections_default:
         enabled: true
         overwrite: true
         config:
           - server:
-            - server_name: collections.{{ domain }} download.{{ domain }}
+            - server_name: collections.{{ common.domain }} download.{{ common.domain }}
             - listen:
               - 80
             - location /.well-known:
@@ -29,13 +29,13 @@ nginx:
             - location /:
               - return: '301 https://$host$request_uri'
 
-      ### COLLECTIONS / DOWNLOAD
+      {# COLLECTIONS / DOWNLOAD #}
       arvados_collections_downloads:
         enabled: true
         overwrite: true
         config:
           - server:
-            - server_name: collections.{{ domain }} download.{{ domain }}
+            - server_name: collections.{{ common.domain }} download.{{ common.domain }}
             - listen:
               - 443 http2 ssl
             - index: index.html index.htm
@@ -52,9 +52,9 @@ nginx:
             - client_max_body_size: 0
             - proxy_http_version: '1.1'
             - proxy_request_buffering: 'off'
-            - ssl_certificate: /etc/letsencrypt/live/collections.covid19workflows-vu.surf-hosted.nl/fullchain.pem
-            - ssl_certificate_key: /etc/letsencrypt/live/collections.covid19workflows-vu.surf-hosted.nl/privkey.pem
+            - ssl_certificate: /etc/letsencrypt/live/collections.{{ common.domain }}/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/collections.{{ common.domain }}/privkey.pem
             - include: 'snippets/letsencrypt.conf'
             {# - include: 'snippets/snakeoil.conf' #}
-            - access_log: {{ nginx_log }}/collections.example.net.access.log combined
-            - error_log: {{ nginx_log }}/collections.example.net.error.log
+            - access_log: {{ nginx_log }}/collections.{{ common.domain }}.access.log combined
+            - error_log: {{ nginx_log }}/collections.{{ common.domain }}.error.log

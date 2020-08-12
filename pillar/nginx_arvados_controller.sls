@@ -1,6 +1,6 @@
 ---
+{% import "./common.sls" as common -%}
 {% set nginx_log = '/var/log/nginx' %}
-{% set domain = 'covid19workflows-vu.surf-hosted.nl' %}
 {% set hostname = 'hackathon' %}
 
 {# NGINX #}
@@ -26,7 +26,7 @@ nginx:
         overwrite: true
         config:
           - server:
-            - server_name: {{ hostname }}.{{ domain }} api.{{ hostname }}.{{ domain }}
+            - server_name: {{ hostname }}.{{ common.domain }} api.{{ hostname }}.{{ common.domain }}
             - listen:
               - 80 default
             - location /.well-known:
@@ -39,7 +39,7 @@ nginx:
         overwrite: true
         config:
           - server:
-            - server_name: {{ hostname }}.{{ domain }}
+            - server_name: {{ hostname }}.{{ common.domain }}
             - listen:
               - 443 http2 ssl
             - index: index.html index.htm
@@ -53,10 +53,10 @@ nginx:
               - proxy_set_header: 'X-Real-IP $remote_addr'
               - proxy_set_header: 'X-Forwarded-For $proxy_add_x_forwarded_for'
               - proxy_set_header: 'X-External-Client $external_client'
-            - ssl_certificate: /etc/letsencrypt/live/hackathon.covid19workflows-vu.surf-hosted.nl/fullchain.pem
-            - ssl_certificate_key: /etc/letsencrypt/live/hackathon.covid19workflows-vu.surf-hosted.nl/privkey.pem
+            - ssl_certificate: /etc/letsencrypt/live/hackathon.{{ common.domain }}/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/hackathon.{{ common.domain }}/privkey.pem
             - include: 'snippets/letsencrypt.conf'
             {# - include: 'snippets/snakeoil.conf' #}
-            - access_log: {{ nginx_log }}/example.net.access.log combined
-            - error_log: {{ nginx_log }}/example.net.error.log
+            - access_log: {{ nginx_log }}/{{ common.domain }}.access.log combined
+            - error_log: {{ nginx_log }}/{{ common.domain }}.error.log
             - client_max_body_size: 128m

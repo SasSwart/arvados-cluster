@@ -1,6 +1,6 @@
 ---
+{% import "./common.sls" as common -%}
 {% set nginx_log = '/var/log/nginx' %}
-{% set domain = 'covid19workflows-vu.surf-hosted.nl' %}
 {% set hostname = 'workbench' %}
 
 arvados:
@@ -21,7 +21,7 @@ nginx:
         overwrite: true
         config:
           - server:
-            - server_name: "{{ hostname }}.{{ domain }}"
+            - server_name: "{{ hostname }}.{{ common.domain }}"
             - listen:
               - 80
             - location /.well-known:
@@ -34,7 +34,7 @@ nginx:
         overwrite: true
         config:
           - server:
-            - server_name: {{ domain }}
+            - server_name: {{ common.domain }}
             - listen:
               - 443 http2 ssl
             - index: index.html index.htm
@@ -47,12 +47,12 @@ nginx:
               - proxy_set_header: 'Host $http_host'
               - proxy_set_header: 'X-Real-IP $remote_addr'
               - proxy_set_header: 'X-Forwarded-For $proxy_add_x_forwarded_for'
-            - ssl_certificate: /etc/letsencrypt/live/workbench.covid19workflows-vu.surf-hosted.nl/fullchain.pem
-            - ssl_certificate_key: /etc/letsencrypt/live/workbench.covid19workflows-vu.surf-hosted.nl/privkey.pem
+            - ssl_certificate: /etc/letsencrypt/live/workbench.{{ common.domain}}/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/workbench.{{ common.domain}}/privkey.pem
             - include: 'snippets/letsencrypt.conf'
             {# - include: 'snippets/snakeoil.conf' #}
-            - access_log: {{ nginx_log }}/{{ domain }}.access.log combined
-            - error_log: {{ nginx_log }}/{{ domain }}.error.log
+            - access_log: {{ nginx_log }}/{{ common.domain }}.access.log combined
+            - error_log: {{ nginx_log }}/{{ common.domain }}.error.log
 
       arvados_workbench_upstream:
         enabled: true
@@ -60,11 +60,11 @@ nginx:
         config:
           - server:
             - listen: '127.0.0.1:9000'
-            - server_name: {{ domain }}
+            - server_name: {{ common.domain }}
             - root: /var/www/arvados-workbench/current/public
             - index:  index.html index.htm
-            - access_log: {{ nginx_log }}/{{ domain }}-upstream.access.log combined
-            - error_log: {{ nginx_log }}/{{ domain }}-upstream.error.log
+            - access_log: {{ nginx_log }}/{{ common.domain }}-upstream.access.log combined
+            - error_log: {{ nginx_log }}/{{ common.domain }}-upstream.error.log
             - passenger_enabled: 'on'
             - passenger_user: 'www-data'
             - client_max_body_size: 128m
