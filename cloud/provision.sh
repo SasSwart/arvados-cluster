@@ -14,19 +14,24 @@ echo $nodes | jq '.surfsara.opennebula[].private_ips[0]' | sed 's/\"//g' > /root
 parallel-ssh -O "UserKnownHostsFile=/dev/null" -O "StrictHostKeyChecking=no" -o /root/output -e /root/error -h /root/hosts -l $USER -x "-i $PRIVATE_KEY" sudo ufw allow 4505
 parallel-ssh -O "UserKnownHostsFile=/dev/null" -O "StrictHostKeyChecking=no" -o /root/output -e /root/error -h /root/hosts -l $USER -x "-i $PRIVATE_KEY" sudo ufw allow 4506
 
+bootstrap_ssh(){
+  ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip $1
+}
+
 # Deploy Salt Code to master node
 master_ip=$(echo $nodes | jq ".surfsara.opennebula.$MASTER.private_ips[0]" | sed 's/\"//g')
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo salt $MASTER pkg.install git"
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "git clone --recursive $REPO ~/arvados"
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "cd ~/arvados && git pull && git submodule update --init"
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo cp ~/arvados/cloud/roots.conf /etc/salt/master.d/roots.conf"
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo systemctl restart salt-master.service"
+bootstrap_ssh "sudo salt $MASTER pkg.install git"
+bootstrap_ssh "sudo salt $MASTER pkg.install git-crypt"
+bootstrap_ssh "git clone --recursive $REPO ~/arvados"
+bootstrap_ssh "cd ~/arvados && git pull && git submodule update --init && git-crypt init"
+bootstrap_ssh "sudo cp ~/arvados/cloud/roots.conf /etc/salt/master.d/roots.conf"
+bootstrap_ssh "sudo systemctl restart salt-master.service"
 
 # Apply state to master
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo salt '$MASTER' state.apply"
+bootstrap_ssh "sudo salt '$MASTER' state.apply"
 
 # Accept Salt keys
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo salt-key -A -y"
+bootstrap_ssh "sudo salt-key -A -y"
 
 # Apply state to all
-ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i $PRIVATE_KEY $USER@$master_ip "sudo salt '*' state.apply"
+bootstrap_ssh "sudo salt '*' state.apply"
