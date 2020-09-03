@@ -14,6 +14,8 @@ nginx:
         'geo $external_client':
           default: 1
           '127.0.0.0/24': 0
+          '145.100.59.86/22': 0
+          '156.155.176.38/24': 0
         upstream controller_upstream:
           - server: 'localhost:8003  fail_timeout=10s'
 

@@ -29,12 +29,20 @@ arvados:
         cluster: 'testc'
         volume_id: '000000000000001'
         access_via_hosts:
-          "http://keep0.{{common.domain}}:25107/": {}
-          "http://keep1.{{common.domain}}:25107/": {}
-        replication: 2
+          "http://keep0.{{common.domain}}:25107": {}
+        replication: 1
         driver: Directory
         driver_parameters:
-          Root: /tmp
+          Root: /tmp/volume
+      volume_two:
+        cluster: 'testc'
+        volume_id: '000000000000002'
+        access_via_hosts:
+          "http://keep1.{{common.domain}}:25107": {}
+        replication: 1
+        driver: Directory
+        driver_parameters:
+          Root: /tmp/volume
 
     secrets:
       blob_signing_key: ZlA9P6apFvmHgyUNc9sfNpqGL4sAx4Kr0mFRDBpUoBkyNc0kP0
@@ -53,8 +61,7 @@ arvados:
       name:
         - arvados-cli
     service:
-      name:
-        - nginx
+      name: nginx
       port: 8004
   controller:
     hostname: hackathon

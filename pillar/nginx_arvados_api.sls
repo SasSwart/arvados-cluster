@@ -15,7 +15,7 @@ nginx:
         config:
           - server:
             - listen: '127.0.0.1:8004'
-            - server_name: api
+            - server_name: localhost-api
             - root: /var/www/arvados-api/current/public
             - index:  index.html index.htm
             - access_log: {{ nginx_log }}/api.{{ common.domain }}-upstream.access.log combined
