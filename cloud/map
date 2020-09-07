@@ -6,24 +6,22 @@ basic:
       vcpu: 4
       minion:
         master: hackathon.covid19workflows-vu.surf-hosted.nl
-  - sso:
-      memory: 8192
-      minion:
-        master: hackathon.covid19workflows-vu.surf-hosted.nl
   - workbench:
       memory: 8192
       cpu: 2
       minion:
         master: hackathon.covid19workflows-vu.surf-hosted.nl
-  - ws:
-      memory: 8192
+  - compute0:
+      memory: 4192
+      cpu: 2
+      minion:
+        master: hackathon.covid19workflows-vu.surf-hosted.nl
+  - compute1:
+      memory: 4192
       cpu: 2
       minion:
         master: hackathon.covid19workflows-vu.surf-hosted.nl
 keep:
-  - collections:
-      minion:
-        master: hackathon.covid19workflows-vu.surf-hosted.nl
   - keep0:
       minion:
         master: hackathon.covid19workflows-vu.surf-hosted.nl
