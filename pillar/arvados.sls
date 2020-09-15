@@ -84,7 +84,7 @@ arvados:
       name: keep-web
       port: 9002
   webdav:
-    download:
+    collections:
       hostname: 'collections'
   keepstore:
     pkg:
@@ -92,6 +92,9 @@ arvados:
     service:
       name: keepstore
       port: 25107
+    hosts:
+      - keep0
+      - keep1
   githttpd:
     pkg:
       name: arvados-git-httpd
@@ -112,6 +115,7 @@ arvados:
         - arvados-cli
         - arvados-login-sync
   workbench:
+    hostname: workbench
     pkg:
       name: arvados-workbench
     service:
