@@ -22,6 +22,7 @@ bootstrap_ssh(){
 master_ip=$(echo $nodes | jq ".surfsara.opennebula.$MASTER.private_ips[0]" | sed 's/\"//g')
 bootstrap_ssh "sudo salt $MASTER pkg.install git"
 bootstrap_ssh "sudo salt $MASTER pkg.install git-crypt"
+bootstrap_ssh "sudo salt $MASTER pkg.install python-pygit2"
 bootstrap_ssh "git clone --recursive $REPO ~/arvados"
 bootstrap_ssh "cd ~/arvados && git pull && git submodule update --init && git-crypt init"
 bootstrap_ssh "sudo cp ~/arvados/cloud/roots.conf /etc/salt/master.d/roots.conf"
