@@ -4,6 +4,9 @@ base:
     - arvados.repo
     - arvados.shell
   'hackathon':
+    - docker
+    - salt-leader
+    - compute
     - letsencrypt
     - postgres
     - nginx
@@ -16,10 +19,7 @@ base:
     - nginx.passenger
     - arvados.workbench
     - letsencrypt
-  'keep0':
-    - arvados.keepstore
-    - arvados.keepweb
-  'keep1':
+  'keep*':
     - arvados.keepstore
     - arvados.keepweb
   'collections':
@@ -27,3 +27,6 @@ base:
     - nginx.passenger
     - letsencrypt
     - arvados.keepweb
+  'compute*':
+    - docker
+    - compute
