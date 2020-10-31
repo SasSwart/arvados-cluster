@@ -1,4 +1,4 @@
-apt_compute:
+{# apt_compute:
   pkg.installed:
   - pkgs:
     - python-arvados-fuse 
@@ -11,21 +11,21 @@ apt_compute:
     - arvados-docker-cleaner
     - docker-ce 
     - docker-ce-cli 
-    - containerd.io
+    - containerd.io #}
 
-/etc/slurm-llnl/slurm.conf:
+{# /etc/slurm/slurm.conf:
   file.managed:
     - source: salt://compute/slurm.conf
     - user: root
     - group: root
     - mode: 644
 
-/etc/slurm-llnl/cgroup.conf:
+/etc/slurm/cgroup.conf:
   file.managed:
     - source: salt://compute/cgroup.conf
     - user: root
     - group: root
-    - mode: 644
+    - mode: 644 #}
 
 /etc/fuse.conf:
   file.managed:
