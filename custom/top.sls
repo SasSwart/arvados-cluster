@@ -14,6 +14,8 @@ base:
     - arvados.api
     - arvados.controller
     - arvados.websocket
+    - slurm
+    - slurm.server
   'workbench':
     - nginx
     - nginx.passenger
@@ -29,4 +31,5 @@ base:
     - arvados.keepweb
   'compute*':
     - docker
+    - slurm.node
     - compute

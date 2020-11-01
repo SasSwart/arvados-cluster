@@ -24,25 +24,19 @@ arvados:
       anonymous_user: oZORRzsQP2RXEY6oJo7rEWVmD0Tf2hvUoZDOvrzzrZy23uzoT0
       provider_secret: WWFUk2yOOoX4J7D7ZkbaITa9TLzavA6JuwEz93QUvcoBlZjNhG
 
-    volumes:
-      volume_one:
-        cluster: 'testc'
-        volume_id: '000000000000001'
-        access_via_hosts:
-          "http://keep0.{{common.domain}}:25107": {}
-        replication: 1
-        driver: Directory
-        driver_parameters:
-          Root: /tmp/volume
-      volume_two:
-        cluster: 'testc'
-        volume_id: '000000000000002'
-        access_via_hosts:
-          "http://keep1.{{common.domain}}:25107": {}
-        replication: 1
-        driver: Directory
-        driver_parameters:
-          Root: /tmp/volume
+    Volumes:
+      ### VOLUME_ONE
+      testc-nyw5e-000000000000001:
+        Driver: Directory
+        DriverParameters: {Root: /tmp/volume}
+        AccessViaHosts: {'http://keep0.covid19workflows-vu.surf-hosted.nl:25107': {}}
+        Replication: 1
+      ### VOLUME_TWO
+      testc-nyw5e-000000000000002:
+        Driver: Directory
+        DriverParameters: {Root: /tmp/volume}
+        AccessViaHosts: {'http://keep1.covid19workflows-vu.surf-hosted.nl:25107': {}}
+        Replication: 1
 
     secrets:
       blob_signing_key: ZlA9P6apFvmHgyUNc9sfNpqGL4sAx4Kr0mFRDBpUoBkyNc0kP0
@@ -51,12 +45,40 @@ arvados:
       dispatcher_secret_key: XxqQ8wT9oIBKnRVHeBJPcQCksFz5XvriUNXvTYH0d1KU6hZg83
       keep_access_key: lgGnWaUSCjMrGfHBNdCYUF1HuqSNs0jj4BQRivSrVSwPGuklLj
       keep_secret_key: E1LxekzbhVghiJbhHxxdof2cnmYpz59VvY2awSjd106uHMTZxl
-
+    
+    Users:
+      NewUsersAreActive: true
+      AutoAdminFirstUser: true
+      AutoSetupNewUsers: true
+      AutoSetupNewUsersWithRepository: False
+    
+    Services:
+      Workbench1:
+        ExternalURL: "https://workbench.covid19workflows-vu.surf-hosted.nl"
+      Keepstore:
+        InternalURLs:
+          "http://keep0.covid19workflows-vu.surf-hosted.nl:25107": {}
+          "http://keep1.covid19workflows-vu.surf-hosted.nl:25107": {}
+      Controller:
+        ExternalURL: "https://hackathon.covid19workflows-vu.surf-hosted.nl"
+        InternalURLs:
+          "http://localhost:8003": {}
+      RailsAPI:
+        InternalURLs:
+          "http://localhost:8004": {}
+      SSO:
+        ExternalURL: "https://sso.covid19workflows-vu.surf-hosted.nl"
+      WebDAV:
+        ExternalURL: https://collections.covid19workflows-vu.surf-hosted.nl
+        InternalURLs:
+          "http://localhost:9002": {}
+      Websocket:
+        ExternalURL: wss://ws.covid19workflows-vu.surf-hosted.nl/websocket
+        InternalURLs:
+          "http://localhost:8005": {}
   api:
     pkg:
-      name:
-        - arvados-api-server
-        - arvados-dispatch-cloud
+      name: arvados-api-server
     gem:
       name:
         - arvados-cli
