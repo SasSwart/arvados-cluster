@@ -48,3 +48,10 @@ ferm:
     - watch:
       - pkg: ferm
       - file: /etc/ferm/ferm.conf
+
+system:
+  network.system:
+  - enabled: True
+  - hostname: {{ pillar.get('hostname') }}.{{ pillar.get('domain') }}
+  - nisdomain: {{ pillar.get('domain') }}
+  - apply_hostname: True
