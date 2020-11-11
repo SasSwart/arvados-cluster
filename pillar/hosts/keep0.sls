@@ -1,1 +1,1 @@
-hostname: keep0
+hostname: keepstore0
