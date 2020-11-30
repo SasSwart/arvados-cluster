@@ -21,6 +21,11 @@ basic:
       cpu: 2
       minion:
         master: hackathon.covid19workflows-vu.surf-hosted.nl
+  - keep:
+    # This is an nginx proxy to the keepstore hosts. 
+    # It does not require the disk space and specs of the keep profile
+      minion:
+        master: hackathon.covid19workflows-vu.surf-hosted.nl
 keep:
   - keep0:
       minion:
