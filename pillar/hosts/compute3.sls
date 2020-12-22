@@ -1,4 +1,4 @@
-hostname: compute1
+hostname: compute3
 
 slurm:
   lookup:

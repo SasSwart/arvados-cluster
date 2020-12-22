@@ -1,5 +1,5 @@
 ---
-{% import "./common.sls" as common -%}
+{% import_yaml "../common/common.sls" as common -%}
 letsencrypt:
   {# # Install using packages instead of git #}
   use_package: true
@@ -12,8 +12,8 @@ letsencrypt:
   cli_install_dir: /opt/letsencrypt
   config: |
     server = https://acme-v02.api.letsencrypt.org/directory
-    email = {{ common.contact_email }}
-    authenticator = webroot
+    email = {{ common.contact_email}}
+    authenticator = standalone
     webroot-path = /var/www
     agree-tos = True
     renew-by-default = True

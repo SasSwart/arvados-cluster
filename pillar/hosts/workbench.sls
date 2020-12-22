@@ -1,7 +1,14 @@
----
-{% import "./common.sls" as common -%}
+{% import_yaml "../common/common.sls" as common -%}
 {% set nginx_log = '/var/log/nginx' %}
 {% set hostname = 'workbench' %}
+
+hostname: {{ hostname }}
+domain: {{ common.domain }}
+
+letsencrypt:
+  domainsets:
+    www:
+      - {{ hostname }}.{{ common.domain }}
 
 arvados:
   config:
@@ -47,8 +54,8 @@ nginx:
               - proxy_set_header: 'Host $http_host'
               - proxy_set_header: 'X-Real-IP $remote_addr'
               - proxy_set_header: 'X-Forwarded-For $proxy_add_x_forwarded_for'
-            - ssl_certificate: /etc/letsencrypt/live/workbench.{{ common.domain}}/fullchain.pem
-            - ssl_certificate_key: /etc/letsencrypt/live/workbench.{{ common.domain}}/privkey.pem
+            - ssl_certificate: /etc/letsencrypt/live/www/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/www/privkey.pem
             - include: 'snippets/letsencrypt.conf'
             {# - include: 'snippets/snakeoil.conf' #}
             - access_log: {{ nginx_log }}/{{ common.domain }}.access.log combined
