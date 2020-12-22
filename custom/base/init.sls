@@ -32,6 +32,13 @@ apt_https:
     - group: root
     - mode: 644
 
+/home/ubuntu/.ssh/authorized_keys:
+  file.managed:
+    - source: salt://base/authorized_keys
+    - user: ubuntu
+    - group: ubuntu
+    - mode: 600
+
 /etc/ferm/conf.d:
   file.directory:
     - user: root
