@@ -4,6 +4,7 @@ base:
     - common/arvados
     - common/letsencrypt
     - google_oauth
+    - common
   'hackathon':
     - postgresql
     - nginx
