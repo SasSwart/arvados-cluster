@@ -16,7 +16,6 @@ base:
     - nginx_keepweb
     - letsencrypt_keepweb
   'keep':
-    - roles/keepproxy
     - hosts/keep
     - nginx
   'keep0':

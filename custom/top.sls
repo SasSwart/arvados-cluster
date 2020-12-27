@@ -16,14 +16,19 @@ base:
     - arvados.websocket
     - slurm
     - slurm.server
+    - slurm.node
   'workbench':
+    - letsencrypt
     - nginx
     - nginx.passenger
     - arvados.workbench
+  'keep':
     - letsencrypt
+    - nginx
+    - arvados.keepproxy
   'keep*':
     - arvados.keepstore
-    - arvados.keepweb
+    - arvados.keepweb # TODO: Do we need this on the store hosts?
   'collections':
     - nginx
     - nginx.passenger
@@ -31,5 +36,6 @@ base:
     - arvados.keepweb
   'compute*':
     - docker
+    - slurm
     - slurm.node
     - compute
