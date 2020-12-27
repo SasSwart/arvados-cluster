@@ -22,7 +22,7 @@ Example:
 * Provision a brand new cluster: `docker-compose run provision`
 * To destroy an Arvados cluster: `docker-compose run destroy`
 
-When provisioning a new cluster, the provisioning system will preinstall Salt minions to all of the virtual machines configured, configure the salt "master" (we will use the term orchestrator from now on). It will also accept the salt-keys of all the minions. It will then run salt once to configure the entire cluster.
+When provisioning a new cluster, the provisioning system will preinstall Salt minions to all of the virtual machines configured and configure the salt "master" (we will use the term orchestrator from now on). It will also accept the salt-keys of all the minions. It will then run salt once to configure the entire cluster.
 
 Should nothing go awry, you should have a functioning cluster after running the above command.
 Because this project is a work in progress, expect things to go awry.

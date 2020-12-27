@@ -1,10 +1,9 @@
-{% import "./common.sls" as common -%}
 {% set hostname = 'hackathon' %}
 
 arvados:
   cluster:
     name: 'testc'
-    domain: {{ common.domain }}
+    domain: {{ salt['pillar.get']('infrastructure:domain') }}
 
     database:
       name: arvados
@@ -52,6 +51,9 @@ arvados:
       AutoSetupNewUsers: true
       AutoSetupNewUsersWithRepository: False
     
+    Containers:
+      SLURM:
+        PrioritySpread: 1000
     Services:
       Workbench1:
         ExternalURL: "https://workbench.covid19workflows-vu.surf-hosted.nl"
@@ -59,6 +61,10 @@ arvados:
         InternalURLs:
           "http://keep0.covid19workflows-vu.surf-hosted.nl:25107": {}
           "http://keep1.covid19workflows-vu.surf-hosted.nl:25107": {}
+      Keepproxy:
+        ExternalURL: "https://keep.covid19workflows-vu.surf-hosted.nl"
+        InternalURLs:
+          "http://localhost:25107": {}
       Controller:
         ExternalURL: "https://hackathon.covid19workflows-vu.surf-hosted.nl"
         InternalURLs:

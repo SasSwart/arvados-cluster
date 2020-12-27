@@ -33,3 +33,10 @@
     - user: root
     - group: root
     - mode: 644
+
+/etc/munge/munge.key:
+  file.managed:
+    - source: salt://compute/munge.key
+    - user: munge
+    - group: munge
+    - mode: 600

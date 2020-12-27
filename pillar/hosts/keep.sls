@@ -1,34 +1,31 @@
 ---
-{% import "./common.sls" as common -%}
 {% set nginx_log = '/var/log/nginx' %}
-{% set hostname = 'hackathon' %}
+{% import_yaml "../common/common.sls" as common -%}
+{% set hostname = 'keep' %}
 
-{# NGINX #}
+hostname: {{ hostname }}
+
+letsencrypt:
+  domainsets:
+    www:
+      - {{ hostname }}.{{ common.domain }}
+
 nginx:
-  {# SERVER #}
   server:
     config:
-
       {# STREAMS #}
       http:
-        'geo $external_client':
-          default: 1
-          '127.0.0.0/24': 0
-          '145.100.59.86/22': 0
-          '156.155.176.38/24': 0
-        upstream controller_upstream:
-          - server: 'localhost:8003  fail_timeout=10s'
-
-  {# SITES #}
+        upstream keepproxy:
+          - server: '127.0.0.1:25107'
   servers:
     managed:
       {# DEFAULT #}
-      arvados_controller_default:
+      keepproxy_acme:
         enabled: true
         overwrite: true
         config:
           - server:
-            - server_name: {{ hostname }}.{{ common.domain }} api.{{ hostname }}.{{ common.domain }}
+            - server_name: {{ hostname }}.{{ common.domain }}
             - listen:
               - 80 default
             - location /.well-known:
@@ -36,9 +33,8 @@ nginx:
             - location /:
               - return: '301 https://$host$request_uri'
 
-      arvados_controller:
+      keepproxy_tls:
         enabled: true
-        overwrite: true
         config:
           - server:
             - server_name: {{ hostname }}.{{ common.domain }}
@@ -46,7 +42,7 @@ nginx:
               - 443 http2 ssl
             - index: index.html index.htm
             - location /:
-              - proxy_pass: 'http://controller_upstream'
+              - proxy_pass: 'http://keepproxy'
               - proxy_read_timeout: 300
               - proxy_connect_timeout: 90
               - proxy_redirect: 'off'
@@ -55,10 +51,9 @@ nginx:
               - proxy_set_header: 'X-Real-IP $remote_addr'
               - proxy_set_header: 'X-Forwarded-For $proxy_add_x_forwarded_for'
               - proxy_set_header: 'X-External-Client $external_client'
-            - ssl_certificate: /etc/letsencrypt/live/hackathon.{{ common.domain }}/fullchain.pem
-            - ssl_certificate_key: /etc/letsencrypt/live/hackathon.{{ common.domain }}/privkey.pem
+            - ssl_certificate: /etc/letsencrypt/live/{{ hostname }}.{{ common.domain }}/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/{{ hostname }}.{{ common.domain }}/privkey.pem
             - include: 'snippets/letsencrypt.conf'
-            {# - include: 'snippets/snakeoil.conf' #}
             - access_log: {{ nginx_log }}/{{ common.domain }}.access.log combined
             - error_log: {{ nginx_log }}/{{ common.domain }}.error.log
             - client_max_body_size: 128m
