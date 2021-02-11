@@ -79,8 +79,8 @@ nginx:
               - proxy_set_header: 'X-Real-IP $remote_addr'
               - proxy_set_header: 'X-Forwarded-For $proxy_add_x_forwarded_for'
               - proxy_set_header: 'X-External-Client $external_client'
-            - ssl_certificate: /etc/letsencrypt/live/{{ hostname }}.{{ common.domain }}/fullchain.pem
-            - ssl_certificate_key: /etc/letsencrypt/live/{{ hostname }}.{{ common.domain }}/privkey.pem
+            - ssl_certificate: /etc/letsencrypt/live/www/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/www/privkey.pem
             - include: 'snippets/letsencrypt.conf'
             {# - include: 'snippets/snakeoil.conf' #}
             - access_log: {{ nginx_log }}/{{ common.domain }}.access.log combined
