@@ -23,6 +23,8 @@ base:
     - hosts/keep0
   'keep1':
     - hosts/keep1
+  'compute*':
+    - roles/slurm_node
   'compute0':
     - hosts/compute0
   'compute1':
@@ -31,3 +33,13 @@ base:
     - hosts/compute2
   'compute3':
     - hosts/compute3
+  'compute4':
+    - hosts/compute4
+  'compute5':
+    - hosts/compute5
+  'compute6':
+    - hosts/compute6
+  'compute7':
+    - hosts/compute7
+  'compute8':
+    - hosts/compute8
