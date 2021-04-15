@@ -1,13 +1,11 @@
 # Build an Arvados Cluster using Salt
 
 Welcome!
-Would you like to [use](##User) or [contribute](##Contributor) to this project?
-Note: We recommend that contributors read the [user](##User) section for context before reading the [contributor](##Contributor) section.
 
-## User
+For general information and context, please see our Wiki, [here](https://github.com/SasSwart/arvados-cluster/wiki)
+
 ### Setup
-To use this project to provision an Arvados cluser, you will need to clone it to your workstation.
-You will also need Docker Compose.
+To use this project to provision an Arvados cluser you will need Docker Compose.
 
 There are two parts to this project.
 A provisioning mechanism and a configuration management system.
