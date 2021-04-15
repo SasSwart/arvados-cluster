@@ -19,6 +19,7 @@ To encapsulate the technicalities of salt-cloud from your workstation, we have w
 Before you can use this facility, you will need to configure your cloud [provider](./cloud/providers). Salt-cloud supports a variety of cloud providers natively, for which you should only need to add a config file to the directory linked previously.
 
 Example:
+
 * Provision a brand new cluster: `docker-compose run provision`
 * To destroy an Arvados cluster: `docker-compose run destroy`
 

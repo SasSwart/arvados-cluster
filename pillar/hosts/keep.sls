@@ -50,9 +50,9 @@ nginx:
               - proxy_set_header: 'Host $http_host'
               - proxy_set_header: 'X-Real-IP $remote_addr'
               - proxy_set_header: 'X-Forwarded-For $proxy_add_x_forwarded_for'
-              - proxy_set_header: 'X-External-Client $external_client'
-            - ssl_certificate: /etc/letsencrypt/live/{{ hostname }}.{{ common.domain }}/fullchain.pem
-            - ssl_certificate_key: /etc/letsencrypt/live/{{ hostname }}.{{ common.domain }}/privkey.pem
+              {# - proxy_set_header: 'X-External-Client $external_client' #}
+            - ssl_certificate: /etc/letsencrypt/live/www/fullchain.pem
+            - ssl_certificate_key: /etc/letsencrypt/live/www/privkey.pem
             - include: 'snippets/letsencrypt.conf'
             - access_log: {{ nginx_log }}/{{ common.domain }}.access.log combined
             - error_log: {{ nginx_log }}/{{ common.domain }}.error.log
